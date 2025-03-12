@@ -1,8 +1,3 @@
-<?php
-if (isset($_SESSION['user'])) {
-    $user = getUser();
-}
-?>
 <style>
     /* Navbar */
     .navbar {
@@ -10,7 +5,7 @@ if (isset($_SESSION['user'])) {
         top: 0;
         width: 100%;
         z-index: 1000;
-        background: rgba(56, 56, 56, 0.8);
+        background: rgba(0, 0, 0, 0.8);
         padding: 12px 0;
     }
 
@@ -73,7 +68,7 @@ if (isset($_SESSION['user'])) {
 
     .dropdown-item:hover {
         background: rgba(0, 123, 255, 0.2);
-        color: rgb(28, 31, 34);
+        color:rgb(28, 31, 34);
         transform: translateX(5px);
     }
 
@@ -99,29 +94,21 @@ if (isset($_SESSION['user'])) {
 <!-- Navbar -->
 <nav class="navbar navbar-dark">
     <div class="container-fluid d-flex justify-content-between align-items-center">
-        <a class="navbar-brand ms-3" href="index.php">QUIZ</a>
-        <?php
-        if (isset($_SESSION['email'])) { ?>
-            <a href="#" class="btn btn-signin me-3 dropdown-toggle d-flex align-items-center" id="userDropdown"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://i.pravatar.cc/50" alt="User" class="rounded-circle me-2 user-img">
-                <span>Hi, <strong>John</strong></span>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                <li><a class="dropdown-item" href="profile.php">👤 Profile</a></li>
-                <li><a class="dropdown-item" href="home.php">🏠 Home</a></li>
-                <li><a class="dropdown-item" href="settings.php">⚙️ Settings</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item text-danger" href="logout.php">🚪 Logout</a></li>
-            </ul>
-
-        <?php } else { ?>
-            <a href="login.php" class="btn btn-signin me-3">
-                <i class="bi bi-person"></i> Sign In
-            </a>
-        <?php } ?>
+        <a class="navbar-brand ms-3" href="">QUIZ</a>
+        <a href="#" class="btn btn-signin me-3 dropdown-toggle d-flex align-items-center" id="userDropdown"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://i.pravatar.cc/50" alt="User" class="rounded-circle me-2 user-img">
+            <span>Hi, <strong>John</strong></span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li><a class="dropdown-item" href="profile.php">👤 Profile</a></li>
+            <li><a class="dropdown-item" href="home.php">🏠 Home</a></li>
+            <li><a class="dropdown-item" href="settings.php">⚙️ Settings</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item text-danger" href="logout.php">🚪 Logout</a></li>
+        </ul>
     </div>
 </nav>
 

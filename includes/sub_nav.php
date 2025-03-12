@@ -4,7 +4,7 @@
             width: 100%;
             overflow-x: auto;
             white-space: nowrap;
-            background: white;
+            background: rgba(178, 176, 176, 0.8);
             /* margin-top: 56px; */
             padding: 10px 0;
             display: flex;

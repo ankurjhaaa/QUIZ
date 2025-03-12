@@ -1,4 +1,10 @@
 <?php include_once "config/db.php"; ?>
+<?php
+    if(!isset($_SESSION['email'])){
+        echo "<script>window.location.href='signup.php';</script>";
+
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +19,7 @@
     <style>
         /* Full Page Background */
         body {
-            background: url('https://picsum.photos/1920/1080') no-repeat center center/cover;
+            /* background: url('https://picsum.photos/1920/1080') no-repeat center center/cover; */
             min-height: 100vh;
             display: flex;
             flex-direction: column;

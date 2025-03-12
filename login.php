@@ -22,7 +22,7 @@
             padding-top: 70px;
         }
 
-        
+
 
         .signup-container {
             width: 100%;
@@ -65,13 +65,13 @@
 
     <?php include_once "includes/navbar.php" ?>
 
-    
+
 
     <!-- Signup Form -->
     <div class="signup-container">
         <h3 class="text-center mb-4">Sign in</h3>
-        <form method="POST" >
-            
+        <form method="POST">
+
             <div class="mb-3">
                 <label class="form-label">Email</label>
                 <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
@@ -80,9 +80,25 @@
                 <label class="form-label">Password</label>
                 <input type="password" name="password" class="form-control" placeholder="Enter your password" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Sign in</button>
+            <button type="submit" class="btn btn-primary w-100" name="sign_in">Sign in</button>
             <a href="signup.php">Signup</a>
         </form>
+        <?php
+        if (isset($_POST['sign_in'])) {
+            $email = $_POST['email'];
+            $_SESSION['email'] = $email;
+            $password = $_POST['password'];
+            $call_user_data = mysqli_query($connect, "SELECT * FROM USER where email='$email' and password='$password'");
+            $count_user = mysqli_num_rows($call_user_data);
+            if ($count_user == 1) {
+                echo "<script>window.location.href='index.php';</script>";
+            } else {
+                echo  "invalid email or password";
+            }
+
+        }
+
+        ?>
     </div>
 
 </body>
