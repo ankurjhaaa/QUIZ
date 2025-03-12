@@ -10,7 +10,7 @@
             display: flex;
             gap: 18px;
             scroll-behavior: smooth;
-            margin-top: 7px;
+            /* margin-top: 7px; */
             
         }
 
@@ -38,11 +38,12 @@
 
 <!-- Category Slider -->
 <div class="category-slider">
-    <a href=""></i>Dashboard</a>
-    <a href="#"><i class="bi bi-house-door me-2"></i>Home</a>
-    <a href="#"><i class="bi bi-star-half me-2"></i>Ranking</a>
-    <a href="#"><i class="bi bi-activity me-2"></i>Activity</a>
-    <!-- <a href="#">Feedback</a> -->
+    <!-- <a href=""></i>Dashboard</a> -->
+    <a href="http://localhost/QUIZ/admin"><i class="bi bi-house-door me-2"></i>Home</a>
+    <a href="#"><i class="bi bi-person-bounding-box me-2"></i></i>User</a>
+    <a href="http://localhost/QUIZ/admin/assets/add_quiz.php"><i class="bi bi-cloud-plus me-2"></i>Add Quiz</a>
+    <a href="#"><i class="bi bi-eye me-2"></i>View Quiz</a>
+    <a href="#">Feedback</a>
     <a href="logout.php"><i class="bi bi-box-arrow-left me-2"></i>Signout</a>
     <!-- <a href="#">Category 4</a>
     <a href="#">Category 5</a>
