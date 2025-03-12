@@ -1,3 +1,4 @@
+<?php include_once "../config/db.php" ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,7 +54,7 @@
     <!-- Login Form -->
     <div class="login-container">
         <h3 class="text-center mb-4">Login</h3>
-        <form method="POST" action="login_process.php">
+        <form method="POST" >
             <div class="mb-3">
                 <label class="form-label">Email</label>
                 <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
@@ -62,8 +63,23 @@
                 <label class="form-label">Password</label>
                 <input type="password" name="password" class="form-control" placeholder="Enter your password" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Login</button>
+            <button type="submit" name="login" class="btn btn-primary w-100">Login</button>
         </form>
+        <?php
+            if(isset($_POST['login'])){
+                $email = $_POST['email'];
+                $_SESSION['admin_email'] = $email;
+                $password = $_POST['password'];
+                // $insert = mysqli_query($connect,"INSERT INTO ADMIN (email,password) VALUE ('$email','$password')");
+                $check_data = mysqli_query($connect,"SELECT * FROM admin where email='$email' AND password='$password'");
+                $count = mysqli_num_rows($check_data);
+                if($count == 1){
+                echo "<script>window.location.href='index.php';</script>";
+
+                }
+            }
+
+        ?>
     </div>
 
     <!-- Bootstrap JS -->

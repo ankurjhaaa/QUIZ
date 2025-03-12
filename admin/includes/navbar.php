@@ -1,5 +1,5 @@
 <!-- Admin Navbar -->
 <nav class="navbar navbar-dark bg-dark px-3">
         <a class="navbar-brand" href="#">Admin Quiz</a>
-        <button class="btn btn-danger">Logout</button>
+        <a href="logout.php" class="btn btn-danger">Logout</a>
     </nav>
