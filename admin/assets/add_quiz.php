@@ -40,7 +40,7 @@
             border-radius: 10px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
-            animation: fadeIn 0.8s ease-in-out;
+            /* animation: fadeIn 0.8s ease-in-out; */
         }
 
         /* Fade-in Animation */
@@ -112,15 +112,15 @@
                     </div> -->
                     <div class="col-6">
                         <label class="form-label">right ansuer. marks</label>
-                        <input type="number" name="no_right_ans" class="form-control" required>
+                        <input type="number" name="no_right_ans" class="form-control" required placeholder="per question" >
                     </div>
                     <div class="col-6">
                         <label class="form-label">wrong ans. marks </label>
-                        <input type="number" name="no_wrong_ans" class="form-control" required>
+                        <input type="number" name="no_wrong_ans" class="form-control" required placeholder="per question">
                     </div>
                     <div class="col-6">
-                        <label class="form-label">Time Limit (minutes)</label>
-                        <input type="number" name="time_limit" class="form-control" required>
+                        <label class="form-label">Time per Question</label>
+                        <input type="number" name="time_limit" class="form-control" required placeholder="in (min)">
                     </div>
                     
                 </div>

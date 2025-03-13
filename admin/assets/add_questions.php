@@ -1,8 +1,28 @@
 <?php include_once "../../config/db.php"; ?>
 <?php
-// if (!isset($_SESSION['admin_email'])) {
-//     echo "<script>window.location.href='../login.php';</script>";
-// }
+if (!isset($_SESSION['admin_email'])) {
+    echo "<script>window.location.href='../login.php';</script>";
+}
+?>
+<?php
+if (isset($_GET['add_question'])) {
+    $id = $_GET['add_question'];
+    $call_title = mysqli_query($connect, "SELECT * FROM quiz_title JOIN quiz_questions ON quiz_title.id = quiz_questions.quiz_id where quiz_title.id='$id'");
+    $title = mysqli_fetch_assoc($call_title);
+    // $count = mysqli_num_rows($call_title);
+    // $count_question = mysqli_fetch_assoc($count);
+
+
+
+} ?>
+<?php
+
+    // $call_title = ;
+    // $title = mysqli_fetch_assoc($call_title);
+    $count = mysqli_num_rows(mysqli_query($connect, "SELECT * FROM quiz_title JOIN quiz_questions ON quiz_title.id = quiz_questions.quiz_id where quiz_title.id='$id' "));
+    // $count_question = mysqli_fetch_assoc($count);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -15,75 +35,50 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-
     <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: 'Poppins', sans-serif;
+        .table-wrapper {
+            overflow-x: auto;
+            white-space: nowrap;
+            /* padding: 20px; */
         }
 
-        .container-box {
-            max-width: 1000px;
-            margin: 40px auto;
+        .table-container {
+            /* min-width: 900px; */
             background: white;
-            padding: 20px;
+            /* padding: 20px; */
             border-radius: 8px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .search-box {
-            width: 100%;
-            max-width: 400px;
-            margin-bottom: 15px;
-        }
-
-        /* अब टेबल को स्क्रॉलेबल बना दिया है */
-        .table-responsive {
-            overflow-x: auto;
-            white-space: nowrap;
-        }
-
-        .table {
-            background-color: white;
-            border-radius: 8px;
-        }
-
         .table thead {
-            background-color: #007bff;
+            background-color: #343a40;
             color: white;
         }
 
         .table tbody tr:hover {
-            background-color: #f1f1f1;
+            background-color: #f1f3f5;
         }
 
-        .btn-action {
-            border: none;
-            padding: 5px 10px;
-            font-size: 14px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
+
+
+        /* Stylish Search Box */
+
+        /* Scrollbar Styling */
+        .table-wrapper::-webkit-scrollbar {
+            height: 8px;
         }
 
-        .btn-edit {
-            background-color: #28a745;
-            color: white;
+        .table-wrapper::-webkit-scrollbar-thumb {
+            background: #aaa;
+            border-radius: 10px;
         }
 
-        .btn-edit:hover {
-            background-color: #218838;
-        }
-
-        .btn-delete {
-            background-color: #dc3545;
-            color: white;
-        }
-
-        .btn-delete:hover {
-            background-color: #c82333;
+        .table-wrapper::-webkit-scrollbar-track {
+            background: #ddd;
+            border-radius: 10px;
         }
     </style>
+
 </head>
 
 <body>
@@ -92,94 +87,141 @@
     <?php include_once "../includes/navbar.php"; ?>
     <?php include_once "../includes/sub_nav.php"; ?>
 
-    <!-- Search Box -->
-    <div class="container text-center mt-4">
-        <input type="text" id="searchInput" class="form-control search-box" placeholder="🔍 Search Questions...">
-    </div>
 
-    <!-- Quiz Table (अब Slider में) -->
-    <div class="container-box">
-        <h4 class="text-center mb-3">📋 Quiz Questions</h4>
-        
-        <!-- यह div टेबल को स्क्रॉलेबल बनाता है -->
-        <div class="table-responsive">
-            <table class="table table-bordered text-center align-middle">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Quiz ID</th>
-                        <th>Question</th>
-                        <th>Option A</th>
-                        <th>Option B</th>
-                        <th>Option C</th>
-                        <th>Option D</th>
-                        <th>Correct</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="quizTable">
-                    <tr>
-                        <td>1</td>
-                        <td>101</td>
-                        <td>What is Linux?</td>
-                        <td>Operating System</td>
-                        <td>Software</td>
-                        <td>Hardware</td>
-                        <td>None</td>
-                        <td>A</td>
-                        <td>
-                            <button class="btn-action btn-edit"><i class="bi bi-pencil"></i></button>
-                            <button class="btn-action btn-delete"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>102</td>
-                        <td>What is PHP?</td>
-                        <td>Programming Language</td>
-                        <td>Database</td>
-                        <td>Browser</td>
-                        <td>Server</td>
-                        <td>A</td>
-                        <td>
-                            <button class="btn-action btn-edit"><i class="bi bi-pencil"></i></button>
-                            <button class="btn-action btn-delete"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>103</td>
-                        <td>What is HTML used for?</td>
-                        <td>Database</td>
-                        <td>Server</td>
-                        <td>Structuring Webpages</td>
-                        <td>Programming</td>
-                        <td>C</td>
-                        <td>
-                            <button class="btn-action btn-edit"><i class="bi bi-pencil"></i></button>
-                            <button class="btn-action btn-delete"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+
+    <div class="container mt-5">
+        <div class="table-wrapper">
+            <div class="table-container">
+
+                <!-- Search Box -->
+
+
+                <table class="table table-bordered text-center align-middle" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>S.N.</th>
+                            <th>Topic</th>
+                            <th>Total Question</th>
+                            <!-- <th>Marks</th> -->
+                            <th>Time Limit</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        <tr>
+                            <td><?= $title['id'] ?></td>
+                            <td><?= $title['title'] ?></td>
+                            <td><?= $count ?></td>
+                            <!-- <td>10</td> -->
+                            <td><?= $title['time_limit'] * $count?> min</td>
+                            <td>
+                                <a href="" class="btn btn-success"><i class="bi bi-trash3"></i> edit</a>
+                            </td>
+                        </tr>
+
+
+
+
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white text-center">
+                <h4>Add New Question</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label class="form-label">Question:</label>
+                        <textarea class="form-control" name="question" required></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Option A:</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="option_a" required>
+                                <div class="input-group-text">
+                                    <input type="radio" name="corr_option" value="A" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Option B:</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="option_b" required>
+                                <div class="input-group-text">
+                                    <input type="radio" name="corr_option" value="B" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Option C:</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="option_c" required>
+                                <div class="input-group-text">
+                                    <input type="radio" name="corr_option" value="C" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Option D:</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="option_d" required>
+                                <div class="input-group-text">
+                                    <input type="radio" name="corr_option" value="D" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" name="add_questions" class="btn btn-success">
+                            <i class="bi bi-plus-circle"></i> Add Question
+                        </button>
+                    </div>
+                </form>
+                <?php
+                // include_once "../../config/db.php"; // Database Connection
+                
+                if (isset($_POST['add_questions'])) {
+                    $quiz_id = $title['id'];
+                    $question = $_POST['question'];
+                    $option_a = $_POST['option_a'];
+                    $option_b = $_POST['option_b'];
+                    $option_c = $_POST['option_c'];
+                    $option_d = $_POST['option_d'];
+                    $corr_option = $_POST['corr_option'];
+
+                    // SQL Query
+                    $sql = "INSERT INTO quiz_questions (quiz_id,question, option_a, option_b, option_c, option_d, corr_option) 
+            VALUES ('$quiz_id','$question', '$option_a', '$option_b', '$option_c', '$option_d', '$corr_option')";
+
+                    if (mysqli_query($connect, $sql)) {
+                        echo "<script>alert('Question Added Successfully'); window.location.href='http://localhost/QUIZ/admin/assets/add_questions.php?add_question='$quiz_id'';</script>";
+                    } else {
+                        echo "Error: " . mysqli_error($conn);
+                    }
+                }
+                ?>
+
+            </div>
         </div>
     </div>
+
+
+
+
+
+
+
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- JavaScript for Search -->
-    <script>
-        document.getElementById("searchInput").addEventListener("keyup", function() {
-            let filter = this.value.toLowerCase();
-            let rows = document.querySelectorAll("#quizTable tr");
-
-            rows.forEach(row => {
-                let text = row.innerText.toLowerCase();
-                row.style.display = text.includes(filter) ? "" : "none";
-            });
-        });
-    </script>
-
 </body>
+
 </html>

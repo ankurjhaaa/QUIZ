@@ -44,17 +44,7 @@ if (!isset($_SESSION['admin_email'])) {
             background-color: #f1f3f5;
         }
 
-        .btn-start {
-            background-color: #28a745;
-            color: white;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-
-        .btn-start:hover {
-            background-color: #218838;
-        }
+        
 
         /* Stylish Search Box */
         .search-container {
@@ -134,13 +124,22 @@ if (!isset($_SESSION['admin_email'])) {
                     while ($title = mysqli_fetch_array($call_title)) { ?>
 
                         <tr>
+                        <?php
+                            $quiz_id = $title['id'];
+                            $count = mysqli_num_rows(mysqli_query($connect, "SELECT * FROM quiz_title JOIN quiz_questions ON quiz_title.id = quiz_questions.quiz_id where quiz_title.id='$quiz_id' "));
+
+                            ?>
                             <td><?= $title['id'] ?></td>
                             <td><?= $title['title'] ?></td>
-                            <td><?= $title['no_que'] ?></td>
+                            <td><?= $count ?></td>
                             <!-- <td>10</td> -->
-                            <td><?= $title['time_limit'] ?> min</td>
-                            <td><a href="add_questions.php" class="btn btn-start"><i class="bi bi-file-earmark-plus"></i> Add Questions</a>
-                            <a href="" class="btn btn-danger"><i class="bi bi-trash3"></i> Delete</a></td>
+                            <td><?= $title['time_limit'] * $count ?> min</td>
+                            <td><a href="view_questions.php" class="btn btn-primary"><i class="bi bi-eye"></i>
+                                    View Questions</a>
+                                <a href="add_questions.php?add_question=<?= $title['id'] ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i>
+                                    Add Questions</a>
+                                <a href="" class="btn btn-danger"><i class="bi bi-trash3"></i> Delete</a>
+                            </td>
                         </tr>
 
                     <?php } ?>
