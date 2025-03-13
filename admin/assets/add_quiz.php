@@ -100,39 +100,49 @@
     <div class="container-center">
         <div class="form-container">
             <h4 class="text-center mb-3">Enter Details</h4>
-            <form method="POST" action="#">
+            <form method="POST">
                 <div class="row g-2">
                     <div class="col-6">
                         <label class="form-label">Quiz Title</label>
                         <input type="text" name="title" class="form-control" placeholder="enter quiz title" required>
                     </div>
-                    <div class="col-6">
+                    <!-- <div class="col-6">
                         <label class="form-label">Number of Question</label>
-                        <input type="number" name="num2" class="form-control" required>
+                        <input type="number" name="no_que" class="form-control" required>
+                    </div> -->
+                    <div class="col-6">
+                        <label class="form-label">right ansuer. marks</label>
+                        <input type="number" name="no_right_ans" class="form-control" required>
                     </div>
                     <div class="col-6">
-                        <label class="form-label">Number 3</label>
-                        <input type="number" name="num3" class="form-control" required>
+                        <label class="form-label">wrong ans. marks </label>
+                        <input type="number" name="no_wrong_ans" class="form-control" required>
                     </div>
                     <div class="col-6">
-                        <label class="form-label">Number 4</label>
-                        <input type="number" name="num4" class="form-control" required>
+                        <label class="form-label">Time Limit (minutes)</label>
+                        <input type="number" name="time_limit" class="form-control" required>
                     </div>
-                    <div class="col-6">
-                        <label class="form-label">Number 5</label>
-                        <input type="number" name="num5" class="form-control" required>
-                    </div>
-                    <div class="col-6">
-                        <label class="form-label">Number 6</label>
-                        <input type="number" name="num6" class="form-control" required>
-                    </div>
+                    
                 </div>
                 <div class="mb-2 mt-3">
                     <label class="form-label">Description</label>
                     <textarea name="description" class="form-control" rows="2" placeholder="Enter description"></textarea>
                 </div>
-                <button type="submit" class="btn btn-submit w-100 mt-2">Submit</button>
+                <button type="submit" name="title_submit" class="btn btn-submit w-100 mt-2">Submit</button>
             </form>
+            <?php
+                if(isset($_POST['title_submit'])){
+                    $title = $_POST['title'];
+                    // $no_que = $_POST['no_que'];
+                    $no_right_ans = $_POST['no_right_ans'];
+                    $no_wrong_ans = $_POST['no_wrong_ans'];
+                    $time_limit = $_POST['time_limit'];
+                    $description = $_POST['description'];
+
+                    $insert_title = mysqli_query($connect,"INSERT INTO quiz_title (title,no_right_ans,no_wrong_ans,time_limit,description) VALUE ('$title','$no_right_ans','$no_wrong_ans','$time_limit','$description')");
+                }
+
+            ?>
         </div>
     </div>
 

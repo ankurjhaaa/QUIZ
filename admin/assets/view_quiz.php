@@ -1,4 +1,5 @@
-<?php include_once "../config/db.php"; ?>
+<?php include_once "../../config/db.php"; ?>
+
 <?php
 if (!isset($_SESSION['admin_email'])) {
     echo "<script>window.location.href='login.php';</script>";
@@ -104,8 +105,8 @@ if (!isset($_SESSION['admin_email'])) {
 
 <body>
 
-    <?php include_once "includes/navbar.php"; ?>
-    <?php include_once "includes/sub_nav.php"; ?>
+    <?php include_once "../includes/navbar.php"; ?>
+    <?php include_once "../includes/sub_nav.php"; ?>
 
     <div class="table-wrapper">
         <div class="table-container">
@@ -138,12 +139,13 @@ if (!isset($_SESSION['admin_email'])) {
                             <td><?= $title['no_que'] ?></td>
                             <!-- <td>10</td> -->
                             <td><?= $title['time_limit'] ?> min</td>
-                            <td><a href="" class="btn btn-start"><i class="bi bi-file-earmark-plus"></i> Add Que</a></td>
+                            <td><a href="add_questions.php" class="btn btn-start"><i class="bi bi-file-earmark-plus"></i> Add Questions</a>
+                            <a href="" class="btn btn-danger"><i class="bi bi-trash3"></i> Delete</a></td>
                         </tr>
 
                     <?php } ?>
 
-                    
+
                 </tbody>
             </table>
         </div>
