@@ -7,8 +7,8 @@ if (!isset($_SESSION['admin_email'])) {
 <?php
 if (isset($_GET['add_question'])) {
     $id = $_GET['add_question'];
-    $call_title = mysqli_query($connect, "SELECT * FROM quiz_title JOIN quiz_questions ON quiz_title.id = quiz_questions.quiz_id where quiz_title.id='$id'");
-    $title = mysqli_fetch_assoc($call_title);
+    $call_title = mysqli_query($connect, "SELECT * FROM quiz_title JOIN quiz_questions ON quiz_title.id = quiz_questions.quiz_id where quiz_questions.id='$id'");
+    $title = mysqli_fetch_array($call_title);
     // $count = mysqli_num_rows($call_title);
     // $count_question = mysqli_fetch_assoc($count);
 

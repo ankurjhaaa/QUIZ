@@ -104,7 +104,7 @@ if (isset($_SESSION['user'])) {
         if (isset($_SESSION['email'])) { ?>
             <a href="#" class="btn btn-signin me-3 dropdown-toggle d-flex align-items-center" id="userDropdown"
                 data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://i.pravatar.cc/50" alt="User" class="rounded-circle me-2 user-img">
+                <!-- <img src="https://i.pravatar.cc/50" alt="User" class="rounded-circle me-2 user-img"> -->
                 <span>Hi, <strong>John</strong></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
