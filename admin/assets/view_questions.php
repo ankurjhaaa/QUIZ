@@ -1,8 +1,8 @@
 <?php include_once "../../config/db.php"; ?>
 <?php
-// if (!isset($_SESSION['admin_email'])) {
-//     echo "<script>window.location.href='../login.php';</script>";
-// }
+if (!isset($_SESSION['admin_email'])) {
+    echo "<script>window.location.href='../login.php';</script>";
+}
 ?>
 
 

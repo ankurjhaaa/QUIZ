@@ -1,39 +1,44 @@
+<?php
+if (!isset($_SESSION['admin_email'])) {
+    echo "<script>window.location.href='../login.php';</script>";
+}
+?>
 <style>
     /* Sub Navbar (Category Section - Auto Slider) */
     .category-slider {
-            width: 100%;
-            overflow-x: auto;
-            white-space: nowrap;
-            background: rgba(178, 176, 176, 0.8);
-            /* margin-top: 56px; */
-            /* padding: 10px 0; */
-            display: flex;
-            gap: 18px;
-            scroll-behavior: smooth;
-            /* margin-top: 7px; */
-            
-        }
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        background: rgba(178, 176, 176, 0.8);
+        /* margin-top: 56px; */
+        /* padding: 10px 0; */
+        display: flex;
+        gap: 18px;
+        scroll-behavior: smooth;
+        /* margin-top: 7px; */
 
-        .category-slider::-webkit-scrollbar {
-            display: none;
-        }
+    }
 
-        .category-slider a {
-            flex: 0 0 auto;
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-            padding: 12px 22px;
-            transition: 0.3s;
-            /* border-radius: 5px; */
-            font-size: 20px;
-            /* background: #f8f9fa; */
-        }
+    .category-slider::-webkit-scrollbar {
+        display: none;
+    }
 
-        .category-slider a:hover {
-            background: black;
-            color: white;
-        }
+    .category-slider a {
+        flex: 0 0 auto;
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+        padding: 12px 22px;
+        transition: 0.3s;
+        /* border-radius: 5px; */
+        font-size: 20px;
+        /* background: #f8f9fa; */
+    }
+
+    .category-slider a:hover {
+        background: black;
+        color: white;
+    }
 </style>
 
 <!-- Category Slider -->
