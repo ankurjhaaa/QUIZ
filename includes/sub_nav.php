@@ -39,9 +39,9 @@
 <!-- Category Slider -->
 <div class="category-slider">
     <a href=""></i>Dashboard</a>
-    <a href="#"><i class="bi bi-house-door me-2"></i>Home</a>
-    <a href="#"><i class="bi bi-star-half me-2"></i>Ranking</a>
-    <a href="#"><i class="bi bi-activity me-2"></i>Activity</a>
+    <a href="index.php"><i class="bi bi-house-door me-2"></i>Home</a>
+    <a href=""><i class="bi bi-star-half me-2"></i>Ranking</a>
+    <a href="user_activity.php"><i class="bi bi-activity me-2"></i>Activity</a>
     <!-- <a href="#">Feedback</a> -->
     <a href="logout.php"><i class="bi bi-box-arrow-left me-2"></i>Signout</a>
     <!-- <a href="#">Category 4</a>

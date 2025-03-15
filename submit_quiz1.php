@@ -69,3 +69,4 @@ if (isset($_POST['submit'])) {
 </body>
 
 </html>
+<a href="start_quiz.php?quiz_title=<?php echo $quiz_id; ?>" class="btn btn-primary">🔄 Retry Quiz</button>

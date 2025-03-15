@@ -21,23 +21,24 @@ if (isset($_POST['submit'])) {
     while ($row = mysqli_fetch_assoc($get_questions)) {
         $total_questions++;
         $question_id = $row['id'];
-        $correct_answer = $row['corr_option']; 
+        $correct_answer = $row['corr_option'];
 
         if (isset($user_answers[$question_id])) {
             $user_answer = $user_answers[$question_id];
 
             if ($user_answer == $correct_answer) {
-                $correct_count++; 
+                $correct_count++;
             } else {
-                $wrong_count++; 
+                $wrong_count++;
             }
         } else {
             $wrong_count++;
         }
     }
 
-    
+
     $score = ($correct_count / $total_questions) * 100;
+    $per_score =  round($score, 2);
 
 }
 ?>
@@ -98,6 +99,7 @@ if (isset($_POST['submit'])) {
         .retry-btn {
             margin-top: 20px;
             padding: 12px 20px;
+            text-decoration: none;
             font-size: 18px;
             background: #007bff;
             color: white;
@@ -119,30 +121,34 @@ if (isset($_POST['submit'])) {
     <?php include_once "includes/sub_nav.php"; ?>
 
     <div class="container mt-4">
-        <div class="result-card mx-auto">
-            <h2>🎯 Quiz Result</h2>
-            <div class="result-item">
-                <span><i class="bi bi-check-circle text-success"></i> Total Questions:</span>
-                <span><?php echo $total_questions; ?></span>
+        <form action="" method="post">
+            <div class="result-card mx-auto">
+                <h2>🎯 Quiz Result</h2>
+                <div class="result-item">
+                    <span><i class="bi bi-check-circle text-success"></i> Total Questions:</span>
+                    <span><?php echo $total_questions; ?></span>
+                </div>
+                <div class="result-item">
+                    <span><i class="bi bi-check-circle text-success"></i> Right Answers:</span>
+                    <span><?php echo $correct_count; ?></span>
+                </div>
+                <div class="result-item">
+                    <span><i class="bi bi-x-circle text-danger"></i> Wrong Answers:</span>
+                    <span><?php echo $wrong_count; ?></span>
+                </div>
+                <div class="result-item">
+                    <span><i class="bi bi-percent text-primary"></i> Total Percentage:</span>
+                    <span><?php echo round($score, 2); ?> %</span>
+                </div>
+                <!-- <div class="result-item">
+                    <span><i class="bi bi-clock text-warning"></i> Total Time:</span>
+                    <span>5m 30s</span>
+                </div> -->
+                <a class="retry-btn btn btn-primary"
+                    onclick="window.location.href='start_quiz.php?quiz_title=<?php echo $quiz_id; ?>'">🔄 Retry Quiz</a>
             </div>
-            <div class="result-item">
-                <span><i class="bi bi-check-circle text-success"></i> Right Answers:</span>
-                <span><?php echo $correct_count; ?></span>
-            </div>
-            <div class="result-item">
-                <span><i class="bi bi-x-circle text-danger"></i> Wrong Answers:</span>
-                <span><?php echo $wrong_count; ?></span>
-            </div>
-            <div class="result-item">
-                <span><i class="bi bi-percent text-primary"></i> Total Percentage:</span>
-                <span><?php echo round($score, 2); ?> %</span>
-            </div>
-            <div class="result-item">
-                <span><i class="bi bi-clock text-warning"></i> Total Time:</span>
-                <span>5m 30s</span>
-            </div>
-            <button class="retry-btn" onclick="window.location.href='quiz.php'">🔄 Retry Quiz</button>
-        </div>
+        </form>
+
     </div>
 
     <!-- Bootstrap JS -->
@@ -150,3 +156,14 @@ if (isset($_POST['submit'])) {
 </body>
 
 </html>
+
+<?php
+if (isset($_POST['submit'])) {
+    $quiz_id = $_POST['quiz_id'];
+    $user_email = $_SESSION['email'];
+
+
+    $insert_user_ans = mysqli_query($connect,"INSERT INTO user_answer (quiz_id, total_que, right_ans, wrong_ans, total_score, email ) VALUE ('$quiz_id','$total_questions','$correct_count','$wrong_count','$per_score','$user_email')");
+
+}
+?>

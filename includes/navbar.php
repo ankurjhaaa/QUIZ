@@ -1,7 +1,7 @@
 <?php
-if (isset($_SESSION['user'])) {
-    // $user = getUser();
-}
+// if (isset($_SESSION['user'])) {
+//     // $user = getUser();
+// }
 ?>
 <style>
     /* Navbar */
@@ -100,12 +100,23 @@ if (isset($_SESSION['user'])) {
 <nav class="navbar navbar-dark">
     <div class="container-fluid d-flex justify-content-between align-items-center">
         <a class="navbar-brand ms-3" href="index.php">QUIZ</a>
+
         <?php
         if (isset($_SESSION['email'])) { ?>
+            <?php
+            $username = $_SESSION['email'];
+            $call_name = mysqli_query($connect, "SELECT * FROM user WHERE email='$username'");
+            $user_detail = mysqli_fetch_assoc($call_name);
+            $user_dp = $user_detail['dp'];
+
+            if ($user_dp == "") {
+                $user_dp = "dp/user_blank_profile.webp";
+            }
+            ?>
             <a href="#" class="btn btn-signin me-3 dropdown-toggle d-flex align-items-center" id="userDropdown"
                 data-bs-toggle="dropdown" aria-expanded="false">
-                <!-- <img src="https://i.pravatar.cc/50" alt="User" class="rounded-circle me-2 user-img"> -->
-                <span>Hi, <strong>John</strong></span>
+                <img src="<?= $user_dp ?>" alt="User" class="rounded-circle me-2 user-img">
+                <span>Hi, <strong><?= $user_detail['first_name'] ?></strong></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                 <li><a class="dropdown-item" href="profile.php">👤 Profile</a></li>

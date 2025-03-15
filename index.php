@@ -142,11 +142,20 @@ if (!isset($_SESSION['email'])) {
                             <td><?= $count ?></td>
                             <!-- <td>10</td> -->
                             <td><?= $title['time_limit'] * $count ?> min</td>
-                            <td><a href="start_quiz.php?quiz_title=<?= $title['id'] ?>" class="btn btn-primary"><i class="bi bi-play-circle"></i> Start
+                            <td><a href="start_quiz.php?quiz_title=<?= $title['id'] ?>" class="btn btn-primary"><i
+                                        class="bi bi-play-circle"></i> Start
                                     Quiz</a></td>
                         </tr>
 
                     <?php } ?>
+
+                    <?php
+                    // if (isset($_POST['quiz_title'])) {
+                    //     date_default_timezone_set('Asia/Kolkata'); 
+                    //     $currentDateTime = date("Y-m-d H:i:s");  
+                    //     $update_user_answer = mysqli_query($connect, "UPDATE user_answer SET start_time='$currentDateTime'");
+                    // }
+                    ?>
 
 
                 </tbody>
@@ -155,7 +164,7 @@ if (!isset($_SESSION['email'])) {
     </div>
 
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> -->
 
     <!-- JavaScript for Live Search -->
     <script>
