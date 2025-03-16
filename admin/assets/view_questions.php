@@ -4,7 +4,11 @@ if (!isset($_SESSION['admin_email'])) {
     echo "<script>window.location.href='../login.php';</script>";
 }
 ?>
-
+<?php
+if(isset($_GET['view_question'])){
+    $que_id = $_GET['view_question'];
+}
+?>
 
 
 <!DOCTYPE html>
@@ -121,7 +125,7 @@ if (!isset($_SESSION['admin_email'])) {
                 </thead>
                 <tbody id="quizTable">
                     <?php
-                    $call_questions = mysqli_query($connect, "SELECT * FROM quiz_questions");
+                    $call_questions = mysqli_query($connect, "SELECT * FROM quiz_questions where quiz_id='$que_id'");
                     while ($quiz_questions = mysqli_fetch_assoc($call_questions)) { ?>
                         <tr>
 

@@ -5,6 +5,6 @@ if (!isset($_SESSION['admin_email'])) {
 ?>
 <!-- Admin Navbar -->
 <nav class="navbar navbar-dark bg-dark px-3">
-    <a class="navbar-brand" href="http://localhost/QUIZ/admin">Admin Quiz</a>
-    <a href="logout.php" class="btn btn-danger">Logout</a>
+    <a class="navbar-brand" href="../../../QUIZ/admin/index.php">Admin Quiz</a>
+    <a href="../../../QUIZ/admin/logout.php" class="btn btn-danger">Logout</a>
 </nav>

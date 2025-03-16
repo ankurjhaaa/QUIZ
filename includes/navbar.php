@@ -99,7 +99,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-dark">
     <div class="container-fluid d-flex justify-content-between align-items-center">
-        <a class="navbar-brand ms-3" href="index.php">QUIZ</a>
+        <a class="navbar-brand ms-3" href="../../QUIZ/index.php">QUIZ</a>
 
         <?php
         if (isset($_SESSION['email'])) { ?>
@@ -110,7 +110,7 @@
             $user_dp = $user_detail['dp'];
 
             if ($user_dp == "") {
-                $user_dp = "dp/user_blank_profile.webp";
+                $user_dp = "../../../../QUIZ/profile/dp/user_blank_profile.webp";
             }
             ?>
             <a href="#" class="btn btn-signin me-3 dropdown-toggle d-flex align-items-center" id="userDropdown"
@@ -119,7 +119,7 @@
                 <span>Hi, <strong><?= $user_detail['first_name'] ?></strong></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                <li><a class="dropdown-item" href="profile.php">👤 Profile</a></li>
+                <li><a class="dropdown-item" href="profile/profile.php">👤 Profile</a></li>
                 <li><a class="dropdown-item" href="home.php">🏠 Home</a></li>
                 <li><a class="dropdown-item" href="settings.php">⚙️ Settings</a></li>
                 <li>

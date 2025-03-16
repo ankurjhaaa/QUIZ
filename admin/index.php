@@ -43,17 +43,7 @@ if (!isset($_SESSION['admin_email'])) {
             background-color: #f1f3f5;
         }
 
-        .btn-start {
-            background-color: #28a745;
-            color: white;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
 
-        .btn-start:hover {
-            background-color: #218838;
-        }
 
         /* Stylish Search Box */
         .search-container {
@@ -128,24 +118,32 @@ if (!isset($_SESSION['admin_email'])) {
                     </tr>
                 </thead>
                 <tbody>
+
+
+
                     <?php
                     $call_title = mysqli_query($connect, "SELECT * FROM quiz_title");
                     while ($title = mysqli_fetch_array($call_title)) { ?>
+                        <?php
+                        $quiz_id = $title['id'];
+                        $count = mysqli_num_rows(mysqli_query($connect, "SELECT * FROM quiz_title JOIN quiz_questions ON quiz_title.id = quiz_questions.quiz_id where quiz_title.id='$quiz_id' "));
 
-                        <tr>
-                            <?php
-                            $quiz_id = $title['id'];
-                            $count = mysqli_num_rows(mysqli_query($connect, "SELECT * FROM quiz_title JOIN quiz_questions ON quiz_title.id = quiz_questions.quiz_id where quiz_title.id='$quiz_id' "));
+                        ?>
+                        <?php if ($count == 0) { ?>
 
-                            ?>
-                            <td><?= $title['id'] ?></td>
-                            <td><?= $title['title'] ?></td>
-                            <td><?= $count ?></td>
-                            <!-- <td>10</td> -->
-                            <td><?= $title['time_limit'] * $count ?> min</td>
-                            <td><a href="" class="btn btn-start"><i class="bi bi-file-earmark-plus"></i> Add Que</a></td>
-                        </tr>
+                        <?php } else { ?>
 
+                            <tr>
+                                <td><?= $title['id'] ?></td>
+                                <td><?= $title['title'] ?></td>
+                                <td><?= $count ?></td>
+                                <!-- <td>10</td> -->
+                                <td><?= $title['time_limit'] * $count ?> min</td>
+                                <td><a href="assets/view_questions_card.php?quiz_title=<?= $title['id'] ?>"
+                                        class="btn btn-primary"><i class="bi bi-eye"></i> View Question</a></td>
+                            </tr>
+
+                        <?php } ?>
                     <?php } ?>
 
 

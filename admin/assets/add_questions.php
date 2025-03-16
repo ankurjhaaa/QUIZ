@@ -17,10 +17,10 @@ if (isset($_GET['add_question'])) {
 } ?>
 <?php
 
-    // $call_title = ;
-    // $title = mysqli_fetch_assoc($call_title);
-    $count = mysqli_num_rows(mysqli_query($connect, "SELECT * FROM quiz_title JOIN quiz_questions ON quiz_title.id = quiz_questions.quiz_id where quiz_title.id='$id' "));
-    // $count_question = mysqli_fetch_assoc($count);
+// $call_title = ;
+// $title = mysqli_fetch_assoc($call_title);
+$count = mysqli_num_rows(mysqli_query($connect, "SELECT * FROM quiz_title JOIN quiz_questions ON quiz_title.id = quiz_questions.quiz_id where quiz_title.id='$id' "));
+// $count_question = mysqli_fetch_assoc($count);
 
 
 ?>
@@ -35,6 +35,7 @@ if (isset($_GET['add_question'])) {
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
     <style>
         .table-wrapper {
             overflow-x: auto;
@@ -115,7 +116,7 @@ if (isset($_GET['add_question'])) {
                             <td><?= $title['title'] ?></td>
                             <td><?= $count ?></td>
                             <!-- <td>10</td> -->
-                            <td><?= $title['time_limit'] * $count?> min</td>
+                            <td><?= $title['time_limit'] * $count ?> min</td>
                             <td>
                                 <a href="" class="btn btn-success"><i class="bi bi-trash3"></i> edit</a>
                             </td>
@@ -197,13 +198,27 @@ if (isset($_GET['add_question'])) {
                     $corr_option = $_POST['corr_option'];
 
                     // SQL Query
-                    $sql = "INSERT INTO quiz_questions (quiz_id,question, option_a, option_b, option_c, option_d, corr_option) 
-            VALUES ('$quiz_id','$question', '$option_a', '$option_b', '$option_c', '$option_d', '$corr_option')";
+                    $sql = mysqli_query($connect, "INSERT INTO quiz_questions (quiz_id,question, option_a, option_b, option_c, option_d, corr_option) 
+            VALUES ('$quiz_id','$question', '$option_a', '$option_b', '$option_c', '$option_d', '$corr_option')");
 
-                    if (mysqli_query($connect, $sql)) {
-                        echo "<script>alert('Question Added Successfully'); window.location.href='http://localhost/QUIZ/admin/assets/add_questions.php?add_question='$quiz_id'';</script>";
+                    if ($sql) {
+                        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+                        echo "<script>
+                            Swal.fire({
+                                 title: '$count Question In This Topic !',
+                                 text: 'Press below button to Add More !',
+                                 icon: 'success',
+                                 confirmButtonText: 'Add More'
+                               }).then((result) => {
+                                 if (result.isConfirmed) {
+                                   window.location.href = ''; // यहां अपनी लिंक डालें
+                                 }
+                               });
+
+                        </script>";
+
                     } else {
-                        echo "Error: " . mysqli_error($conn);
+                        echo "Error: " ;
                     }
                 }
                 ?>

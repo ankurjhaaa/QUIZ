@@ -132,6 +132,7 @@ if (!isset($_SESSION['admin_email'])) {
             </form>
             <?php
                 if(isset($_POST['title_submit'])){
+                    $qz_id = $_POST['title_submit'];
                     $title = $_POST['title'];
                     // $no_que = $_POST['no_que'];
                     $no_right_ans = $_POST['no_right_ans'];
@@ -140,6 +141,23 @@ if (!isset($_SESSION['admin_email'])) {
                     $description = $_POST['description'];
 
                     $insert_title = mysqli_query($connect,"INSERT INTO quiz_title (title,no_right_ans,no_wrong_ans,time_limit,description) VALUE ('$title','$no_right_ans','$no_wrong_ans','$time_limit','$description')");
+
+                    if($insert_title){
+                        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+                        echo "<script>
+                            Swal.fire({
+                                 title: '$title  !',
+                                 text: 'Title added successfully  !',
+                                 icon: 'success',
+                                 confirmButtonText: 'Add More'
+                               }).then((result) => {
+                                 if (result.isConfirmed) {
+                                   window.location.href = ''; // यहां अपनी लिंक डालें
+                                 }
+                               });
+
+                        </script>";
+                    }
                 }
 
             ?>

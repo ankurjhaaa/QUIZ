@@ -44,12 +44,12 @@ if (!isset($_SESSION['admin_email'])) {
 <!-- Category Slider -->
 <div class="category-slider">
     <!-- <a href=""></i>Dashboard</a> -->
-    <a href="http://localhost/QUIZ/admin"><i class="bi bi-house-door me-2"></i>Home</a>
+    <a href="../../../QUIZ/admin/index.php"><i class="bi bi-house-door me-2"></i>Home</a>
     <a href="#"><i class="bi bi-person-bounding-box me-2"></i></i>User</a>
-    <a href="http://localhost/QUIZ/admin/assets/add_quiz.php"><i class="bi bi-cloud-plus me-2"></i>Add Quiz</a>
-    <a href="http://localhost/QUIZ/admin/assets/view_quiz.php"><i class="bi bi-eye me-2"></i>View Quiz</a>
+    <a href="../../../../QUIZ/admin/assets/add_quiz.php"><i class="bi bi-cloud-plus me-2"></i>Add Quiz</a>
+    <a href="../../../../QUIZ/admin/assets/view_quiz.php"><i class="bi bi-eye me-2"></i>View Quiz</a>
     <a href="#">Feedback</a>
-    <a href="http://localhost/QUIZ/admin/logout.php"><i class="bi bi-box-arrow-left me-2"></i>Signout</a>
+    <a href="../../../QUIZ/admin/logout.php"><i class="bi bi-box-arrow-left me-2"></i>Signout</a>
     <!-- <a href="#">Category 4</a>
     <a href="#">Category 5</a>
     <a href="#">Category 6</a>

@@ -134,7 +134,7 @@ if (!isset($_SESSION['admin_email'])) {
                             <td><?= $count ?></td>
                             <!-- <td>10</td> -->
                             <td><?= $title['time_limit'] * $count ?> min</td>
-                            <td><a href="view_questions.php" class="btn btn-primary"><i class="bi bi-eye"></i>
+                            <td><a href="view_questions.php?view_question=<?= $title['id'] ?>" class="btn btn-primary"><i class="bi bi-eye"></i>
                                     View Questions</a>
                                 <a href="add_questions.php?add_question=<?= $title['id'] ?>" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i>
                                     Add Questions</a>
