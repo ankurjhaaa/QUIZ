@@ -115,7 +115,7 @@
             ?>
             <a href="#" class="btn btn-signin me-3 dropdown-toggle d-flex align-items-center" id="userDropdown"
                 data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="<?= $user_dp ?>" alt="User" class="rounded-circle me-2 user-img">
+                <img src="../../../../QUIZ/profile/dp/<?= $user_dp ?>" alt="User" class="rounded-circle me-2 user-img">
                 <span>Hi, <strong><?= $user_detail['first_name'] ?></strong></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">

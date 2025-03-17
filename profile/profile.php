@@ -42,6 +42,7 @@ if (!isset($_SESSION['email'])) {
             border-radius: 50%;
             margin-bottom: 10px;
             border: 3px solid #ddd;
+            cursor: pointer;
         }
 
         .profile-box h2 {
@@ -89,44 +90,34 @@ if (!isset($_SESSION['email'])) {
     <?php include_once "../includes/navbar.php"; ?>
     <?php
     $email = $_SESSION['email'];
-    $call_user_detail = mysqli_query($connect, "SELECT * FROM user where email='$email'");
+    $call_user_detail = mysqli_query($connect, "SELECT * FROM user WHERE email='$email'");
     $user = mysqli_fetch_assoc($call_user_detail);
     ?>
 
     <!-- Profile Box -->
     <div class="profile-box">
-        <form action="" method="post" enctype="multipart/form-data">
         <div class="profile-img-container" onclick="document.getElementById('fileInput').click();">
-            <img id="profileImage" src="https://picsum.photos/150" alt="User Avatar">
+            <img id="profileImage" src="<?php echo !empty($user['dp']) ? 'dp/' . $user['dp'] : '../../../../QUIZ/profile/dp/user_blank_profile.webp'; ?>" alt="User Avatar">
             <input type="file" name="dp" id="fileInput" accept="image/*" style="display: none;">
-            <input type="submit" name="profile" hidden>
         </div>
-        </form>
-        <?php
-            if(isset($_POST['profile'])){
-                $email = $_SESSION['email'];
-                $image = $_FILES['dp']['name'];
-                $tmp_image = $_FILES['dp']['tmp_name'];
-                move_uploaded_file($tmp_image, "dp/$image");
 
-                $insert_dp = mysqli_query($connect,"UPDATE user SET dp='$image' where email='$email'");
-            }
-        ?>
-        <h2><?php echo ($user['first_name'] . ' ' . $user['last_name']); ?></h2>
+        <h2><?php echo $user['first_name'] . ' ' . $user['last_name']; ?></h2>
         <p><?php echo isset($_SESSION['email']) ? $_SESSION['email'] : 'guest@example.com'; ?></p>
 
         <div class="profile-info">
-            <div><strong>First Name:</strong> <span><?php echo ($user['first_name']); ?></span></div>
-            <div><strong>Last Name:</strong> <span><?php echo ($user['last_name']); ?></span></div>
-            <div><strong>Birthday:</strong> <span><?php echo ($user['dob']); ?></span></div>
-
-            <div><strong>Mobile:</strong> <span><?php echo ($user['mobile']); ?></span></div>
-            <div><strong>Address:</strong> <span><?php echo ($user['address']); ?></span></div>
-            <div><strong>Gender:</strong> <span><?php echo ($user['gender']); ?></span></div>
-            <div><strong>Joined On:</strong> <span><?php echo ($user['join_date']); ?></span></div>
+            <div><strong>First Name:</strong> <span><?php echo $user['first_name']; ?></span></div>
+            <div><strong>Last Name:</strong> <span><?php echo $user['last_name']; ?></span></div>
+            <div><strong>Birthday:</strong> <span><?php echo $user['dob']; ?></span></div>
+            <div><strong>Mobile:</strong> <span><?php echo $user['mobile']; ?></span></div>
+            <div><strong>Address:</strong> <span><?php echo $user['address']; ?></span></div>
+            <div><strong>Gender:</strong> <span><?php echo $user['gender']; ?></span></div>
+            <div><strong>Joined On:</strong> <span><?php echo $user['join_date']; ?></span></div>
             <div><a href="" class="btn btn-success"><i class="bi bi-pencil-square me-2"></i>Edit profile</a></div>
         </div>
     </div>
+
+    <!-- jQuery and AJAX -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         document.getElementById('fileInput').addEventListener('change', function (event) {
             let file = event.target.files[0];
@@ -139,9 +130,23 @@ if (!isset($_SESSION['email'])) {
                 };
 
                 reader.readAsDataURL(file);
+
+                // AJAX से इमेज अपलोड करना
+                let formData = new FormData();
+                formData.append("dp", file);
+
+                $.ajax({
+                    url: "upload_profile.php",
+                    type: "POST",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        console.log(response);
+                    }
+                });
             }
         });
-
     </script>
 </body>
 

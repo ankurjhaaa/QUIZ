@@ -156,7 +156,7 @@ if (!isset($_SESSION['admin_email'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- JavaScript for Live Search -->
-    <script>
+    <!-- <script>
         document.getElementById("searchBox").addEventListener("keyup", function () {
             let filter = this.value.toLowerCase();
             let rows = document.querySelectorAll("#dataTable tbody tr");
@@ -170,7 +170,7 @@ if (!isset($_SESSION['admin_email'])) {
                 }
             });
         });
-    </script>
+    </script> -->
 
 </body>
 

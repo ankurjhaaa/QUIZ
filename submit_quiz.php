@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
 
 
     $score = ($correct_count / $total_questions) * 100;
-    $per_score =  round($score, 2);
+    $per_score = round($score, 2);
 
 }
 ?>
@@ -163,7 +163,7 @@ if (isset($_POST['submit'])) {
     $user_email = $_SESSION['email'];
 
 
-    $insert_user_ans = mysqli_query($connect,"INSERT INTO user_answer (quiz_id, total_que, right_ans, wrong_ans, total_score, email ) VALUE ('$quiz_id','$total_questions','$correct_count','$wrong_count','$per_score','$user_email')");
+    $insert_user_ans = mysqli_query($connect, "INSERT INTO user_answer (quiz_id, total_que, right_ans, wrong_ans, total_score, email ) VALUE ('$quiz_id','$total_questions','$correct_count','$wrong_count','$per_score','$user_email')");
 
 }
 ?>

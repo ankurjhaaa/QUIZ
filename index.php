@@ -131,22 +131,28 @@ if (!isset($_SESSION['email'])) {
                     $call_title = mysqli_query($connect, "SELECT * FROM quiz_title");
                     while ($title = mysqli_fetch_array($call_title)) { ?>
 
-                        <tr>
-                            <?php
-                            $quiz_id = $title['id'];
-                            $count = mysqli_num_rows(mysqli_query($connect, "SELECT * FROM quiz_title JOIN quiz_questions ON quiz_title.id = quiz_questions.quiz_id where quiz_title.id='$quiz_id' "));
 
-                            ?>
-                            <td><?= $title['id'] ?></td>
-                            <td><?= $title['title'] ?></td>
-                            <td><?= $count ?></td>
-                            <!-- <td>10</td> -->
-                            <td><?= $title['time_limit'] * $count ?> min</td>
-                            <td><a href="start_quiz.php?quiz_title=<?= $title['id'] ?>" class="btn btn-primary"><i
-                                        class="bi bi-play-circle"></i> Start
-                                    Quiz</a></td>
-                        </tr>
+                        <?php
+                        $quiz_id = $title['id'];
+                        $count = mysqli_num_rows(mysqli_query($connect, "SELECT * FROM quiz_title JOIN quiz_questions ON quiz_title.id = quiz_questions.quiz_id where quiz_title.id='$quiz_id' "));
 
+                        ?>
+                        <?php if ($count == 0) { ?>
+
+                        <?php } else { ?>
+
+                            <tr>
+                                <td><?= $title['id'] ?></td>
+                                <td><?= $title['title'] ?></td>
+                                <td><?= $count ?></td>
+                                <!-- <td>10</td> -->
+                                <td><?= $title['time_limit'] * $count ?> min</td>
+                                <td><a href="start_quiz.php?quiz_title=<?= $title['id'] ?>" class="btn btn-primary"><i
+                                            class="bi bi-play-circle"></i> Start
+                                        Quiz</a></td>
+                            </tr>
+
+                        <?php } ?>
                     <?php } ?>
 
                     <?php
@@ -167,7 +173,7 @@ if (!isset($_SESSION['email'])) {
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> -->
 
     <!-- JavaScript for Live Search -->
-    <script>
+    <!-- <script>
         document.getElementById("searchBox").addEventListener("keyup", function () {
             let filter = this.value.toLowerCase();
             let rows = document.querySelectorAll("#dataTable tbody tr");
@@ -181,7 +187,7 @@ if (!isset($_SESSION['email'])) {
                 }
             });
         });
-    </script>
+    </script> -->
 
 
 

@@ -156,7 +156,7 @@ if(isset($_GET['view_question'])){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- JavaScript for Search -->
-    <script>
+    <!-- <script>
         document.getElementById("searchInput").addEventListener("keyup", function () {
             let filter = this.value.toLowerCase();
             let rows = document.querySelectorAll("#quizTable tr");
@@ -166,7 +166,7 @@ if(isset($_GET['view_question'])){
                 row.style.display = text.includes(filter) ? "" : "none";
             });
         });
-    </script>
+    </script> -->
 
 </body>
 
